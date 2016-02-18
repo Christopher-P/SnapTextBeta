@@ -1,0 +1,2 @@
+# SnapTextBeta
+Text Recognition App
