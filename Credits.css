@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 18, 2015, 1:18:51 PM
+    Author     : Chris
+*/
+
+
+body {
+    background-color: black;
+    border-style: groove;
+    background-image: url("circuit.jpg");
+    margin: 0px;
+    max-width: 100vw;
+}
+
+#title{
+    text-align: center;
+    margin: auto;
+    width: 450px;
+    height: 30px;
+    background-color: transparent;
+    border-style: none;
+    color: white;
+    font-size: x-large;
+}
+
+#description{
+    margin: auto;
+    width: 450px;
+    height: 250px;
+    background-color: transparent;
+    border-style: groove;
+    color: white;
+    font-size: large;
+}
+
+#PhotoBox {
+    border-color: transparent;
+    border-style: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100% 100%;
+    width: 99vw;
+    min-width: 640px;
+    
+    background-image: url("Pete.jpg");
+    color: white;
+    
+    width: 800px;
+    height: 600px;
+    margin: auto;
+}
+
+#LeftArrow {
+    font-family: "Impact";
+    font-size: 40px;
+    background-color: black;
+    float: left;
+    height: 600px;
+    width: 50px;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    
+    line-height: 600px;
+    text-align: center;
+}
+#LeftArrow:hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+#RightArrow {
+    font-family: "Impact";
+    font-size: 50px;
+    background-color: black;
+    float: right;
+    height: 600px;
+    width: 50px;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    
+    line-height: 600px;
+    text-align: center;
+}
+
+#RightArrow:hover{
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+#section1{
+    border-bottom-color: darkgrey;
+    border-bottom-style: groove;
+    background-image: url("circuit.jpg");
+    height: 1000px;
+    width: 100%;
+}

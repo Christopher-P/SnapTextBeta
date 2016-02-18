@@ -1,0 +1,69 @@
+/* 
+    Created on : Jun 18, 2015, 1:18:51 PM
+    Author     : Chris
+*/
+
+
+
+
+#main{
+    background-image: url("cell.png");
+    width: 83vw;
+    height: 800px;
+    margin: 0 auto; 
+    
+    min-width: 640px;
+    min-height: 480px;
+}
+
+
+
+#section1{
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    height: 800px;
+    width: 100%;
+}
+
+#section2{
+    background-image: url("phone4.jpg");
+    
+}
+
+#section3{
+    background-image: url("old-person.jpg");
+}
+
+#section4{
+    background-image: url("phone1.jpg");
+}
+
+#section5{
+    background-image: url("phone2.jpg");
+}
+
+.important{
+    font-family: "Trebuchet MS";
+    font-size: 60%;
+    font-size: 3.5vw;
+    font-weight: bold;
+    position: inherit;
+    color: white;
+    
+    text-shadow:    /* By Kyle on http://stackoverflow.com/questions/4919076/outline-effect-to-text */
+    
+        -1px -1px 0 #000
+}
+
+.para{
+    font-family: "Arial";
+    font-size: 15px;
+    font-size: 2.0vw;
+    font-weight: bold;
+    color: white;
+    
+     padding-top: 25px;
+    
+    text-shadow:
+        1px 1px 0 #000
+}
