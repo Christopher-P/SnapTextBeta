@@ -4,10 +4,3 @@
  * and open the template in the editor.
  */
 
-function ClickTest(){
-     document.getElementById('something').innerHTML = "New text stuff :D";
-}
-
-function ButtonDO() {
-    document.getElementById('Test').innerHTML = "IT DID STUFF!";
-}

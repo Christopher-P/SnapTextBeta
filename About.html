@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <link rel="stylesheet" type="text/css" href="About.css"> <!-- External CSS -->
         <link rel="stylesheet" type="text/css" href="General.css">
-        
+        <script type="text/javascript" src="PhotoShow.js"> </script> <!-- External JavaScript -->
         <title>SnapText Beta</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,22 +18,15 @@ and open the template in the editor.
             <div id='header'>
                 SnapText &beta;eta
             </div>
-            
-            <div id='LeftBar'>
-                <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Credits.html">Meet the Devs</a></li>
-                <li><a href="About.html">About</a></li>
-                </ul>
-            </div>
 
-            <div id='RightBar'>
-            To raise new questions, new possibilities, to regard old problems from a new angle, 
-            requires creative imagination and marks real advance in science. <br> <br>
-            ~Albert Einstein
+            <div class="dropdown">
+              <button onclick="callDropDown()" class="dropbtn">&#9776; Menu</button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="index.html" style="top: 60px;">Home</a>
+                <a href="Credits.html" style="top: 118px;">Meet the Devs</a>
+                <a href="About.html" style="top: 176px;">About</a>
+              </div>
             </div>
-
-         
 
             <div id='banner' class='section'>
                 About

@@ -7,7 +7,7 @@
 
 
 #main{
-    background-image: url("cell.png");
+    background-image: url("Images/cell.png");
     width: 83vw;
     height: 800px;
     margin: 0 auto; 
@@ -16,30 +16,27 @@
     min-height: 480px;
 }
 
-
-
 #section1{
-    border-bottom-color: black;
-    border-bottom-style: solid;
+    border-style: none;
     height: 800px;
     width: 100%;
 }
 
 #section2{
-    background-image: url("phone4.jpg");
+    background-image: url("Images/phone4.jpg");
     
 }
 
 #section3{
-    background-image: url("old-person.jpg");
+    background-image: url("Images/old-person.jpg");
 }
 
 #section4{
-    background-image: url("phone1.jpg");
+    background-image: url("Images/phone1.jpg");
 }
 
 #section5{
-    background-image: url("phone2.jpg");
+    background-image: url("Images/phone2.jpg");
 }
 
 .important{

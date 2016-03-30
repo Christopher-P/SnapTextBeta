@@ -17,26 +17,34 @@ function movePic(x) {
     
     if(pic === 0 ){
         title.innerHTML = "Evil Genius";
-        image.style.backgroundImage = 'url(EmilyPic.jpg)';
+        image.style.backgroundImage = 'url(Images/EmilyPic.jpg)';
         desc.innerHTML = "Emily MacDonald is a senior at Whitworth University, studying Physics and French, with minors in Spanish, Sociology, and Math. She works as a night manager at a restaurant. She does not enjoy long walks on the beach, but is not opposed to vanilla milkshakes or Pina Coladas. She is quite fond of burgers and randomizing articles on Wikipedia. The majority of her knowledge comes from Nancy Drew or Sherlock Holmes computer games from her youth. She likes science. Her favourite colour is usually green. She often uses the British spelling of words and is a strong supporter of the Oxford comma.";
     }
     else if (pic === 1){
         title.innerHTML = "Harpoon Engagement Planning Officer";
-        image.style.backgroundImage = 'url(ChrisPic.jpg)';
+        image.style.backgroundImage = 'url(Images/ChrisPic.jpg)';
         desc.innerHTML = "Christopher Peryeda is a student at Whitworth University studying Computer Science, Mathematics, and Applied Physics. He is currently looking into grad school to attend after he graduates next year. An aspiring math dude who loves cool math-y things that are awesome. Enjoys PB&J for lunch and is a proud chocoholic. When not singing in the shower, can often be found looking smart and or sleeping.";
     }
     else{
         title.innerHTML = "BrewMaster";
-        image.style.backgroundImage = 'url(Pete.jpg)';
+        image.style.backgroundImage = 'url(Images/Pete.jpg)';
         desc.innerHTML = "This is Pete!";
     }   
+}
+
+function ClickTest(){
+     document.getElementById('something').innerHTML = "New text stuff :D";
+}
+
+function ButtonDO() {
+    document.getElementById('Test').innerHTML = "IT DID STUFF!";
 }
 
 /***********THIS FUNCTION BY w3schools.com******************/
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function myFunction() {
+function callDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 

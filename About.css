@@ -12,22 +12,21 @@ and open the template in the editor.
     border-style: solid;
     border-color: white;
     padding-top: 17px;
-    background-image: url("math.jpg");
+    background-image: url("Images/math.jpg");
     color: #991f00;
     font-family: "Times New Roman";
     font-size: 75px;
-    text-shadow:            /* By Kyle on http://stackoverflow.com/questions/4919076/outline-effect-to-text*/
-    -1px -1px 0 #fff
- 
     width: 100%;
     height: 300px;
+    text-shadow:            /* By Kyle on http://stackoverflow.com/questions/4919076/outline-effect-to-text*/
+    -1px -1px 0 #fff
 }
 #main {
     padding: 20px 20px 20px 20px;
     font-family: "Trebuchet MS";
     font-size: 23px;
 
-    background-image: url("textback.jpg");
+    background-image: url("Images/textback.jpg");
     color: #009999;
     text-shadow:            /* By Kyle on http://stackoverflow.com/questions/4919076/outline-effect-to-text*/
     -1px -1px 0 #000,
