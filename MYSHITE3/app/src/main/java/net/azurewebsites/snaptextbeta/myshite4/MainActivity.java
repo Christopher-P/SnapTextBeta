@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresPermission;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.*;
 import android.util.Log;
@@ -39,8 +40,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.googlecode.tesseract.android.TessBaseAPI;
-import com.googlecode.tesseract.android.TessPdfRenderer;
+import com.googlecode.tesseract.android.*;
+import com.googlecode.leptonica.android.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -469,23 +470,73 @@ public class MainActivity extends AppCompatActivity {
 
         // _image.setImageBitmap( bitmap );
 
+
+        Pix myPix = ReadFile.readBitmap(bitmap);
+        Pix sharp = Enhance.unsharpMasking(myPix);
+        Pix edge = Edge.pixSobelEdgeFilter(myPix, Edge.L_ALL_EDGES);
+        Pix noskew = Rotate.rotate(edge, Skew.findSkew(edge));
+
+        OutputStream fOut = null;
+
+
+        FileOutputStream out = null;
+        Bitmap bit;
+
+        File dir = new File(DATA_PATH + "/Proc");
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        try{
+            File file = new File(dir, "asharp.png");
+            out = new FileOutputStream(file);
+            bit =  WriteFile.writeBitmap(sharp);
+            out.flush();
+            bit.compress(Bitmap.CompressFormat.PNG, 100,out);
+
+            file = new File(dir, "bedge.png");
+            out = new FileOutputStream(file);
+            bit =  WriteFile.writeBitmap(edge);
+            out.flush();
+            bit.compress(Bitmap.CompressFormat.PNG, 100,out);
+
+            file = new File(dir, "cnoskew.png");
+            out = new FileOutputStream(file);
+            bit =  WriteFile.writeBitmap(noskew);
+            out.flush();
+            bit.compress(Bitmap.CompressFormat.PNG, 100,out);
+
+            out.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if (out != null){
+                    out.close();
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         //Log.v(TAG, "Before baseApi");
         TessBaseAPI baseApi = new TessBaseAPI();
 
-        TessPdfRenderer doc = new TessPdfRenderer(baseApi, "MyPdf");
+        //TessPdfRenderer doc = new TessPdfRenderer(baseApi, "MyPdf");
 
-        baseApi.beginDocument(doc, "MyDoc");
+        //baseApi.beginDocument(doc, "MyDoc");
 
         baseApi.setDebug(true);
 
         baseApi.init(DATA_PATH, lang);
 
-        baseApi.setImage(bitmap);
+        baseApi.setImage(noskew);
         String recognizedText = baseApi.getUTF8Text();
 
-        baseApi.endDocument(doc);
+        //baseApi.endDocument(doc);
 
-        doc.recycle();
+        //doc.recycle();
 
         baseApi.end();
 
