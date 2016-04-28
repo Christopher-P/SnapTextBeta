@@ -1,10 +1,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.cpereyda18.myshite3.MainActivity">
+    tools:context="com.example.emily.myapplication.MainActivity">
+    <item
+        android:id="@+id/action_new"
+        android:orderInCategory="100"
+        android:title="New"
+        android:icon="@android:drawable/ic_input_add"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="101"
+        android:title="Share"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_recent"
+        android:orderInCategory="102"
+        android:title="Recent"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_rate"
+        android:orderInCategory="103"
+        android:title="Rate App"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="104"
+        android:title="Help"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:orderInCategory="105"
+        android:title="Settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_account"
+        android:orderInCategory="106"
+        android:title="My Account"
         app:showAsAction="never" />
 </menu>
