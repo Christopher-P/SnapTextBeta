@@ -54,10 +54,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class MainActivity extends AppCompatActivity {
     public static final String PACKAGE_NAME = "net.azurewebsites.snaptextbeta.myshite4";
-    public static final String DATA_PATH = Environment
-            .getExternalStorageDirectory().toString() + "/MainActivity/";
+    public static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/MainActivity/";
 
 
+    public String WolfAns = null;
     // You should have the trained data file in assets folder
     // You can get them at:
     // http://code.google.com/p/tesseract-ocr/downloads/list
@@ -322,7 +322,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-
         }
         catch(IOException io)
         {
@@ -339,7 +338,8 @@ public class MainActivity extends AppCompatActivity {
     {
         protected String doInBackground(String... urls)
         {
-            return wolframAnswer(100, "ZAR", "DOL");
+            WolfAns = wolframAnswer(100, "ZAR", "DOL");
+            return WolfAns;
         }
         protected void onPostExecute(String result)
         {
@@ -564,7 +564,7 @@ public class MainActivity extends AppCompatActivity {
         // Cycle done.
     }
 
-    /*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -604,251 +604,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    */
+
 }
-
-/*
-import com.googlecode.tesseract.android.*;
-import com.googlecode.leptonica.android.*;
-
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-public class MainActivity extends FragmentActivity {
-    final String lang = "eng";
-
-
-    TessBaseAPI myOcr;
-    String myText = "";
-
-    String path = "Noop";
-
-    Uri outPutfileUri;
-    static int TAKE_PIC = 1;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
-
-        boolean initResult = false;
-
-
-        //ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, );
-
-
-
-
-         /*
-        Try 2
-         */
-        /*
-        TessBaseAPI _tessAPI = new TessBaseAPI();
-        String LANG = "eng";
-        String TESSDATA = "tessdata";
-        File data = new File(getApplicationInfo().dataDir, TESSDATA);
-        File traineddataFile = new File(data, LANG + ".traineddata");
-        if (!traineddataFile.exists()) {
-            try {
-                data.mkdirs();
-                copyAndClose(this.getAssets().open(TESSDATA + "/" + LANG + ".traineddata"), new FileOutputStream(traineddataFile));
-            } catch (IOException e) {
-                editText2.setText(e.getMessage());
-            }
-        }
-        _tessAPI.init(getApplicationInfo().dataDir, LANG);
-
-
-        // Test Code for working OCR change stuff later
-
-        TessBaseAPI baseAPI = new TessBaseAPI();
-        try {
-            initResult = baseAPI.init(Environment.getExternalStorageDirectory().getParent(), lang);
-        }
-        catch( IllegalArgumentException e){
-            editText.setText(e.getMessage());
-        }
-
-        if(initResult) {      //initResult
-            InputStream is = null;
-            try {
-                is = getAssets().open("test2.jpg");
-                final Drawable drw = Drawable.createFromStream(is, null);
-                Bitmap bmp = ((BitmapDrawable) drw).getBitmap();
-
-                baseAPI.setDebug(true);
-                baseAPI.setImage(bmp);
-                ImageView imageView = (ImageView)findViewById(R.id.imageView);
-                imageView.setImageBitmap(bmp);
-
-                String recognizedText = baseAPI.getUTF8Text();
-                //Log.d("Rec Text", recognizedText);
-                //TextView textView = (TextView) findViewById(R.id.textBox);
-                editText.setText(recognizedText);
-                //baseAPI.end();
-
-            } catch (FileNotFoundException nfe) {
-                Log.d("FNF", "File Not Found");
-                nfe.printStackTrace();
-            } catch (IOException ioe) {
-                Log.d("Unable to open file", "Unable to open the file");
-                ioe.printStackTrace();
-            }
-        } else {
-            Log.d("OCR", "Unable to init Base API");
-        }
-
-    }
-
-    public void copyAndClose(InputStream src, OutputStream dst) throws IOException {
-        InputStream in = src;
-        OutputStream out = dst;
-
-        // Transfer bytes from in to out
-        byte[] buf = new byte[1024];
-        int len;
-        while ((len = in.read(buf)) > 0) {
-            out.write(buf, 0, len);
-        }
-        in.close();
-        out.close();
-    }
-
-    public void CameraClick(View v) {
-
-        //Intent myIntent = new Intent(CameraActivity.this, MainActivity.class);
-
-        Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        path = Environment.getExternalStorageDirectory().toString();
-        File file = new File (path, "MyPhoto");
-        outPutfileUri = Uri.fromFile(file);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, outPutfileUri);
-        intent.putExtra(android.provider.MediaStore.EXTRA_SIZE_LIMIT, "720000");
-        startActivityForResult(intent, TAKE_PIC);
-
-        editText2.setText("Photo saved to: " + outPutfileUri.getPath());
-
-        // myIntent.putExtra(path, "hi");
-    }
-
-    public void alert(String text){
-        new AlertDialog.Builder(this)
-                .setTitle("Alert!")
-                .setMessage(text)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data)
-    {
-        if (requestCode == TAKE_PIC && resultCode==RESULT_OK && null != data){
-            Toast.makeText(this, outPutfileUri.toString(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void doStuff(View v){
-        /*
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            path = extras.getString("hi");
-        }
-
-        Bitmap myBit;
-        File file = new File(path + "/MyPhoto");
-        editText3.setText("Looking in: " + file.getPath());
-
-        if (!file.exists())
-        {
-            editText.setText("ERROR: FILE NOT FOUND!");
-        }
-        else {
-            File image = new File(path, "MyPhoto");
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
-            myOcr = new TessBaseAPI();
-            myOcr.setImage(bitmap);
-
-
-
-            StringBuilder myNums = new StringBuilder();
-            /*
-            myOcr = new TessBaseAPI();
-            TessBaseAPI tessBase = new TessBaseAPI();
-            TessPdfRenderer tessPDF = new TessPdfRenderer(tessBase ,path);
-            myOcr.beginDocument(tessPDF);
-            myOcr.setImage(file);
-
-
-            myText = myOcr.getUTF8Text();
-            editText.setText(myText);
-
-            int[] array = myOcr.wordConfidences();
-            for (int i = 0; i < array.length; i++) {
-                myNums.append(array[i]);
-                myNums.append(", ");
-            }
-            if (array.length == 0) {
-                myNums.append("No Words Recognized!");
-            }
-            editText.setText(myNums);
-            myOcr.end();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-}
-
-*/
