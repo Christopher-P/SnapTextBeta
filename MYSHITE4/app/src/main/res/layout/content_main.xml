@@ -21,8 +21,8 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="640dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/background"
 
@@ -37,6 +37,20 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Take Pic"
+            android:background="#151515"
+            android:padding="15dp"
+            android:radius="10dp"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:id="@+id/OCR"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Conduct OCR"
             android:background="#151515"
             android:padding="15dp"
             android:radius="10dp"
@@ -80,21 +94,13 @@
             android:padding="15dp"
             android:textColor="#ffffff"/>
 
+        <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/webview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="invisible"
+            />
 
-        <!-- <Button
-            android:id="@+id/buttonOCR"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="GET OCR"
-            android:onClick="doStuff"
-            android:background="#151515"
-            android:layout_marginBottom="5dp"
-            android:textColor="#ffffff"/>
-        -->
     </LinearLayout>
 </ScrollView>
 

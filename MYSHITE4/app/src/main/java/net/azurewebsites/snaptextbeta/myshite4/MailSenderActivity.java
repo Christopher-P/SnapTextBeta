@@ -1,6 +1,7 @@
 package net.azurewebsites.snaptextbeta.myshite4;
 
 //By http://stackoverflow.com/users/28557/vinayak-b
+// Edited by Chrisrotpher Pereyda
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.widget.EditText;
 
 public class MailSenderActivity extends Activity {
 
-    EditText editText2;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class MailSenderActivity extends Activity {
         // TODO Auto-generated method stub
 
         try {
-            GMailSender sender = new GMailSender("christopher.pereyda@gmail.com", "f=gm18m2/d62");
+            GMailSender sender = new GMailSender("Email", "Password");
             sender.sendMail("This is Subject",
                     "This is Body",
                     "christopher.pereyda@gmail.com",
